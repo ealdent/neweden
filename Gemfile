@@ -1,8 +1,9 @@
 source "http://rubygems.org"
 
-gem "typhoeus", "0.2.4"
-gem "nokogiri", "1.5.0"
+gem "typhoeus",         "0.2.4"
+gem "nokogiri",         "1.5.0"
 gem "json"
+gem "awesome_print"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
