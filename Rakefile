@@ -17,8 +17,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "neweden"
   gem.homepage = "http://github.com/ealdent/neweden"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Ruby library for accessing Eve Online API}
   gem.email = "jasonmadams@gmail.com"
   gem.authors = ["Jason Adams"]
   # dependencies defined in Gemfile
