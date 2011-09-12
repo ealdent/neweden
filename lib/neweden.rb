@@ -1,7 +1,7 @@
 require 'typhoeus'
 require 'nokogiri'
 
-require './neweden/errors'
+require File.join(File.dirname(__FILE__), 'neweden', 'errors')
 
 class NewEden
   REQUEST_TIMEOUT = 60000     # 60 seconds
@@ -37,9 +37,23 @@ class NewEden
       raise TimeoutError, "Response timed out."
     elsif response.code == 0
       raise NoResponseError, "No response received."
+    elsif response.code == 404
+      raise NotFoundError, "API endpoint not found."
     elsif !response.success?
       raise UnsuccessfulResponseError, "Received HTTP response: #{response.code.to_s}"
     end
+
+    xml = Nokogiri::XML.parse(response.body)
+
+    unless (xml/:eveapi/:error).empty?
+      if (xml/:eveapi/:error).attribute('code').value == '203'
+        raise AuthenticationError, "Invalid key id or vcode."
+      else
+        raise ApiError, (xml/:eveapi/:error).children.map { |e| e.to_s.gsub(/\.$/, '') }.join(", ")
+      end
+    end
+
+    xml
   end
 
   def use_game_server
