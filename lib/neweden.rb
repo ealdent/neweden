@@ -5,9 +5,11 @@ require 'active_support/core_ext/hash/conversions'
 
 require File.join(File.dirname(__FILE__), 'neweden', 'errors')
 require File.join(File.dirname(__FILE__), 'neweden', 'account')
+require File.join(File.dirname(__FILE__), 'neweden', 'character')
 
 class NewEden
   include Account
+  include Character
 
   REQUEST_TIMEOUT = 60000     # 60 seconds
   CACHE_TIMEOUT   = 300       # 5 minutes
@@ -102,10 +104,17 @@ class NewEden
     myhash.keys.each do |key|
       if myhash[key].kind_of?(Hash)
         symbolize_keys(myhash[key])
-      elsif
-        myhash[key].kind_of?(Array)
+      elsif myhash[key].kind_of?(Array)
         myhash[key].each do |element|
           symbolize_keys(element) if element.kind_of?(Hash)
+        end
+      elsif myhash[key].is_a?(String)
+        if myhash[key].strip =~ /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/
+          myhash[key] = DateTime.parse(myhash[key]).to_time
+        elsif myhash[key].strip =~ /^\d+$/
+          myhash[key] = myhash[key].to_i
+        elsif myhash[key].strip =~ /^\d+\.\d+$/
+          myhash[key] = myhash[key].to_f
         end
       end
     end
