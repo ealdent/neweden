@@ -1,9 +1,13 @@
 require 'typhoeus'
 require 'nokogiri'
+require 'ostruct'
 
 require File.join(File.dirname(__FILE__), 'neweden', 'errors')
+require File.join(File.dirname(__FILE__), 'neweden', 'account')
 
 class NewEden
+  include Account
+
   REQUEST_TIMEOUT = 60000     # 60 seconds
   CACHE_TIMEOUT   = 300       # 5 minutes
 
@@ -16,6 +20,15 @@ class NewEden
     @test_server    = "apitest.eveonline.com".freeze
     @server = use_test ? @test_server : @game_server
     @hydra = Typhoeus::Hydra.new
+  end
+
+  def request(endpoint, method = :post, params = {})
+    xml = handle_response(raw_request(endpoint, method, params))
+    if xml
+      xml/:eveapi/:result
+    else
+      raise XMLParsingError, "No XML parsed successfully."
+    end
   end
 
   def raw_request(endpoint, method = :post, params = {})
