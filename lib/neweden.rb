@@ -6,10 +6,12 @@ require 'active_support/core_ext/hash/conversions'
 require File.join(File.dirname(__FILE__), 'neweden', 'errors')
 require File.join(File.dirname(__FILE__), 'neweden', 'account')
 require File.join(File.dirname(__FILE__), 'neweden', 'character')
+require File.join(File.dirname(__FILE__), 'neweden', 'corporation')
 
 class NewEden
   include Account
   include Character
+  include Corporation
 
   REQUEST_TIMEOUT = 60000     # 60 seconds
   CACHE_TIMEOUT   = 300       # 5 minutes
