@@ -8,12 +8,16 @@ require File.join(File.dirname(__FILE__), 'neweden', 'account')
 require File.join(File.dirname(__FILE__), 'neweden', 'character')
 require File.join(File.dirname(__FILE__), 'neweden', 'corporation')
 require File.join(File.dirname(__FILE__), 'neweden', 'eve')
+require File.join(File.dirname(__FILE__), 'neweden', 'image')
+require File.join(File.dirname(__FILE__), 'neweden', 'map')
 
 class NewEden
   include Account
   include Character
   include Corporation
   include Eve
+  include Image
+  include Map
 
   REQUEST_TIMEOUT = 60000     # 60 seconds
   CACHE_TIMEOUT   = 300       # 5 minutes
