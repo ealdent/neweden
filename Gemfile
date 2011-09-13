@@ -4,6 +4,7 @@ gem "typhoeus",         "0.2.4"
 gem "nokogiri",         "1.5.0"
 gem "json"
 gem "awesome_print"
+gem "active_support",   "3.0.0"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
