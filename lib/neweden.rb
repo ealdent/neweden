@@ -36,9 +36,9 @@ class NewEden
   def request(endpoint, method = :post, params = {})
     xml = handle_response(raw_request(endpoint, method, params))
     if xml
-      symbolize_keys(Hash.from_xml((xml/:eveapi/:result).to_s))
+      symbolize_keys(Hash.from_xml((xml/:eveapi/:result).to_s))[:result] rescue raise XMLParsingError, "No result in set"
     else
-      raise XMLParsingError, "No XML parsed successfully."
+      raise XMLParsingError, "No XML parsed successfully"
     end
   end
 
