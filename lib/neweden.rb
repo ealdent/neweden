@@ -18,6 +18,7 @@ class NewEden
   include Api
   include Character
   include Corporation
+  include Errors
   include Eve
   include Image
   include Map
@@ -74,8 +75,12 @@ class NewEden
     xml = Nokogiri::XML.parse(response.body)
 
     unless (xml/:eveapi/:error).empty?
-      if (xml/:eveapi/:error).attribute('code').value == '203'
+      error_code = (xml/:error).attribute('code').value.to_i
+      case error_code
+      when 203
         raise AuthenticationError, "Invalid key id or vcode."
+      when 124, 125
+        raise NotInvolvedInFactionalWarfare, "Not involved in factional warfare."
       else
         raise ApiError, (xml/:eveapi/:error).children.map { |e| e.to_s.gsub(/\.$/, '') }.join(", ")
       end
@@ -97,12 +102,20 @@ class NewEden
   end
 
   def request_params(params = {})
-    {
-      :headers => { :Accept => "application/xml" },
-      :timeout => REQUEST_TIMEOUT,
-      :cache_timeout => CACHE_TIMEOUT,
-      :params => params.merge({ :keyID => @key_id, :vCode => @vcode })
-    }
+    if @key_id.nil? || @vcode.nil?
+      {
+        :headers => { :Accept => "application/xml" },
+        :timeout => REQUEST_TIMEOUT,
+        :cache_timeout => CACHE_TIMEOUT
+      }
+    else
+      {
+        :headers => { :Accept => "application/xml" },
+        :timeout => REQUEST_TIMEOUT,
+        :cache_timeout => CACHE_TIMEOUT,
+        :params => params.merge({ :keyID => @key_id, :vCode => @vcode })
+      }
+    end
   end
 
   private
