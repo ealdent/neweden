@@ -25,12 +25,15 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/neweden.rb",
     "lib/neweden/account.rb",
+    "lib/neweden/api.rb",
     "lib/neweden/character.rb",
     "lib/neweden/corporation.rb",
     "lib/neweden/errors.rb",
     "lib/neweden/eve.rb",
     "lib/neweden/image.rb",
     "lib/neweden/map.rb",
+    "lib/neweden/server.rb",
+    "neweden.gemspec",
     "test/helper.rb",
     "test/test_neweden.rb"
   ]
