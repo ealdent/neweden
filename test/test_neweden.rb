@@ -95,46 +95,4 @@ class TestNeweden < Test::Unit::TestCase
       end
     end
   end
-
-  # comment out these next two contexts if you do not want to test against the live api
-  context "with character credentials" do
-    setup do
-      # These tests are all meant to be run against the actual API
-      @config = Psych.load_file(File.join(File.dirname(__FILE__), 'config', 'eve-api.yml'))[:character]
-      @neweden = NewEden.new(@config[:key_id], @config[:vcode])
-    end
-
-    should "have credentials present" do
-      assert !@config.blank?
-    end
-
-    context "a character" do
-      NewEden::CHARACTER_ENDPOINTS.each do |endpoint|
-        should "respond to #{endpoint} endpoint" do
-          begin
-            result = @neweden.send(endpoint.to_s.underscore, @config[:character_id])
-            assert result.is_a?(Hash)
-            assert !result.blank?
-          rescue NewEden::NotInvolvedInFactionalWarfare
-            assert true
-          end
-        end
-      end
-
-      should "define methods against special character endpoints" do
-        assert @neweden.respond_to? 'calendar_event_attendees'
-        assert @neweden.respond_to? 'upcoming_calendar_events'
-      end
-    end
-  end
-
-  context "with corporate credentials" do
-    setup do
-      @config = Psych.load_file(File.join(File.dirname(__FILE__), 'config', 'eve-api.yml'))[:corporation]
-    end
-
-    should "have credentials present" do
-      assert !@config.blank?
-    end
-  end
 end

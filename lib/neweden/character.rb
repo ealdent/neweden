@@ -1,6 +1,6 @@
 module Character
   CHARACTER_ENDPOINTS = %w{ AccountBalance AssetList CharacterSheet ContactList ContactNotifications Contracts FacWarStats
-    IndustryJobs Killlog MailBodies MailingLists MailMessages MarketOrders Medals Notifications NotificationTexts Research
+    IndustryJobs Killlog MailBodies MailingLists MailMessages MarketOrders Medals Notifications Research
     SkillinTraining SkillQueue Standings WalletJournal WalletTransactions
   }
 
@@ -10,6 +10,20 @@ module Character
         character_request("/char/#{endpoint}.xml.aspx", character_id)
       end
     RUBY
+  end
+
+  def notification_texts(character_id, *notification_ids)
+    request("/char/NotificationTexts.xml.aspx", :post, :characterID => character_id, :IDs => notification_ids.map { |nid| nid.to_s }.join(','))
+  end
+
+  def all_notification_texts(character_id)
+    n_results = self.notifications(character_id)
+    if n_results[:rowset][:row].nil?
+      nil
+    else
+      notification_ids = n_results[:rowset][:row].map { |row| row[:notificationID] }
+      notification_texts(character_id, notification_ids)
+    end
   end
 
   def calendar_event_attendees(character_id)
