@@ -1,6 +1,6 @@
 # USAGE: Hash.from_xml:(YOUR_XML_STRING)
 # modified from http://stackoverflow.com/questions/1230741/convert-a-nokogiri-document-to-a-ruby-hash/1231297#1231297
-
+# Thanks to Dmitry Mozzherin (https://gist.github.com/335286)
 class Hash
   class << self
     def from_xml(xml_io)
