@@ -26,7 +26,7 @@ class NewEden
   def request(endpoint, method = :post, params = {})
     xml = handle_response(raw_request(endpoint, method, params))
     if xml
-      symbolize_keys(Hash.from_xml((xml/:eveapi/:result).to_s))[:result] rescue raise XMLParsingError, "No result in set"
+      Hash.from_xml((xml/:eveapi/:result).to_s)[:result] # rescue raise XMLParsingError, "No result in set"
     else
       raise XMLParsingError, "No XML parsed successfully"
     end
@@ -109,26 +109,25 @@ class NewEden
     endpoint.strip.gsub(/^\/+/, '')
   end
 
-  def symbolize_keys(myhash)
-    myhash.symbolize_keys!
-    myhash.keys.each do |key|
-      if myhash[key].kind_of?(Hash)
-        symbolize_keys(myhash[key])
-      elsif myhash[key].kind_of?(Array)
-        myhash[key].each do |element|
-          symbolize_keys(element) if element.kind_of?(Hash)
-        end
-      elsif myhash[key].is_a?(String)
-        if myhash[key].strip =~ /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/
-          myhash[key] = DateTime.parse(myhash[key]).to_time
-        elsif myhash[key].strip =~ /^\d+$/
-          myhash[key] = myhash[key].to_i
-        elsif myhash[key].strip =~ /^\d+\.\d+$/
-          myhash[key] = myhash[key].to_f
-        end
-      end
-    end
+  # def symbolize_keys(myhash)
+  #   myhash.keys.each do |key|
+  #     if myhash[key].kind_of?(Hash)
+  #       symbolize_keys(myhash[key])
+  #     elsif myhash[key].kind_of?(Array)
+  #       myhash[key].each do |element|
+  #         symbolize_keys(element) if element.kind_of?(Hash)
+  #       end
+  #     elsif myhash[key].is_a?(String)
+  #       if myhash[key].strip =~ /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/
+  #         myhash[key] = DateTime.parse(myhash[key]).to_time
+  #       elsif myhash[key].strip =~ /^\d+$/
+  #         myhash[key] = myhash[key].to_i
+  #       elsif myhash[key].strip =~ /^\d+\.\d+$/
+  #         myhash[key] = myhash[key].to_f
+  #       end
+  #     end
+  #   end
 
-    myhash
-  end
+  #   myhash
+  # end
 end
