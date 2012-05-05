@@ -1,3 +1,4 @@
+# adapted from Rails 3.1 https://github.com/rails/rails
 class String
   def underscore
     word = self.dup

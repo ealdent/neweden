@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{neweden}
-  s.version = "0.1.0"
+  s.name = "neweden"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Jason Adams}]
-  s.date = %q{2012-04-29}
-  s.email = %q{jasonmadams@gmail.com}
+  s.authors = ["Jason Adams"]
+  s.date = "2012-05-05"
+  s.email = "jasonmadams@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
@@ -43,11 +43,11 @@ Gem::Specification.new do |s|
     "test/test_neweden.rb",
     "test/test_neweden_live.rb"
   ]
-  s.homepage = %q{http://github.com/ealdent/neweden}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.7}
-  s.summary = %q{Ruby library for accessing Eve Online API}
+  s.homepage = "http://github.com/ealdent/neweden"
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.23"
+  s.summary = "Ruby library for accessing Eve Online API"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
