@@ -18,6 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/ealdent/neweden"
   gem.license = "MIT"
   gem.summary = %Q{Ruby library for accessing Eve Online API}
+  gem.description = %Q{Ruby library for accessing Eve Online API}
   gem.email = "jasonmadams@gmail.com"
   gem.authors = ["Jason Adams"]
   # dependencies defined in Gemfile
@@ -32,13 +33,3 @@ Rake::TestTask.new(:test) do |test|
 end
 
 task :default => :test
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "neweden #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end

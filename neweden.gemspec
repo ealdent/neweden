@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jason Adams"]
   s.date = "2012-05-05"
+  s.description = "Ruby library for accessing Eve Online API"
   s.email = "jasonmadams@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -29,6 +30,7 @@ Gem::Specification.new do |s|
     "lib/neweden/account.rb",
     "lib/neweden/api.rb",
     "lib/neweden/character.rb",
+    "lib/neweden/connection.rb",
     "lib/neweden/corporation.rb",
     "lib/neweden/errors.rb",
     "lib/neweden/eve.rb",
