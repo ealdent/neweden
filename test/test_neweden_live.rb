@@ -22,7 +22,8 @@ class TestNewedenLive < Test::Unit::TestCase
           begin
             result = @neweden.send(endpoint.to_s.underscore, @config[:character_id])
             assert result.is_a?(Hash)
-            assert !result.blank?
+            assert !result.nil?
+            assert !result.empty?
           rescue NewEden::Connection::NotInvolvedInFactionalWarfare
             assert true
           end
@@ -35,7 +36,8 @@ class TestNewedenLive < Test::Unit::TestCase
           assert true
         else
           assert result.is_a?(Hash)
-          assert !result.blank?
+          assert !result.nil?
+          assert !result.empty?
         end
       end
     end
@@ -47,7 +49,8 @@ class TestNewedenLive < Test::Unit::TestCase
     end
 
     should "have credentials present" do
-      assert !@config.blank?
+      assert !@config.nil?
+      assert !@config.empty?
     end
   end
 end
