@@ -4,11 +4,11 @@ class TestNeweden < Test::Unit::TestCase
   context "without credentials" do
     setup do
       # set up a NewEden object with nil api values to ensure everything is defined
-      @neweden = NewEden.new(nil, nil)
+      @neweden = NewEden::Connection.new(nil, nil)
     end
 
     context "a character" do
-      NewEden::CHARACTER_ENDPOINTS.each do |endpoint|
+      NewEden::Connection::CHARACTER_ENDPOINTS.each do |endpoint|
         should "define method for #{endpoint} character endpoint" do
           assert @neweden.respond_to? endpoint.to_s.underscore
         end
@@ -22,12 +22,12 @@ class TestNeweden < Test::Unit::TestCase
         assert @neweden.respond_to? 'upcoming_calendar_events'
       end
     end
-    
+
     context "an account" do
       should "define method for account status" do
         assert @neweden.respond_to? 'account_status'
       end
-      
+
       should "define method for api key info" do
         assert @neweden.respond_to? 'api_key_info'
       end
@@ -38,7 +38,7 @@ class TestNeweden < Test::Unit::TestCase
     end
 
     context "a corporation" do
-      NewEden::CORPORATION_ENDPOINTS.each do |endpoint|
+      NewEden::Connection::CORPORATION_ENDPOINTS.each do |endpoint|
         should "define method for #{endpoint} corporation endpoint" do
           assert @neweden.respond_to? "corp_#{endpoint.to_s.underscore}"
         end
@@ -46,12 +46,12 @@ class TestNeweden < Test::Unit::TestCase
     end
 
     context "general eve" do
-      NewEden::EVE_ENDPOINTS.each do |endpoint|
+      NewEden::Connection::EVE_ENDPOINTS.each do |endpoint|
         should "define method for #{endpoint} eve endpoint" do
           assert @neweden.respond_to? "eve_#{endpoint.to_s.underscore}"
         end
       end
-      
+
       should "define method for getting a list of character ids" do
         assert @neweden.respond_to? 'character_ids'
       end
@@ -59,14 +59,14 @@ class TestNeweden < Test::Unit::TestCase
       should "define method for getting basic character info" do
         assert @neweden.respond_to? 'character_info'
       end
-      
+
       should "define method for getting character names from ids" do
         assert @neweden.respond_to? 'character_names'
       end
     end
 
     context "maps" do
-      NewEden::MAP_ENDPOINTS.each do |endpoint|
+      NewEden::Connection::MAP_ENDPOINTS.each do |endpoint|
         should "define method for #{endpoint} map endpoint" do
           assert @neweden.respond_to? "map_#{endpoint.to_s.underscore}"
         end
@@ -86,7 +86,7 @@ class TestNeweden < Test::Unit::TestCase
     end
 
     context 'images' do
-      NewEden::IMAGE_ENDPOINTS.each_pair do |endpoint, sizes|
+      NewEden::Connection::IMAGE_ENDPOINTS.each_pair do |endpoint, sizes|
         sizes.each do |size|
           should "define methods for getting the url for #{endpoint} of size #{size}" do
             assert @neweden.respond_to? "#{endpoint.to_s.underscore}_image_url_#{size}"

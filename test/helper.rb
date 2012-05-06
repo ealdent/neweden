@@ -12,9 +12,9 @@ end
 require 'test/unit'
 require 'shoulda-context'
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'neweden'
+require 'init'
 
 class Test::Unit::TestCase
 end
