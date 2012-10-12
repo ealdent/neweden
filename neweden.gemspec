@@ -47,7 +47,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/ealdent/neweden"
   s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
+  s.require_paths = ["init.rb", "lib"]
   s.rubygems_version = "1.8.23"
   s.summary = "Ruby library for accessing Eve Online API"
 

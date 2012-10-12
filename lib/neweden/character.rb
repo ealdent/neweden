@@ -7,8 +7,8 @@ module NewEden
 
     CHARACTER_ENDPOINTS.each do |endpoint|
       module_eval <<-RUBY
-        def #{endpoint.underscore}(character_id)
-          character_request("/char/#{endpoint}.xml.aspx", character_id)
+        def #{endpoint.underscore}(character_id, options = {})
+          character_request("/char/#{endpoint}.xml.aspx", character_id, options)
         end
       RUBY
     end
@@ -43,8 +43,8 @@ module NewEden
 
     private
 
-    def character_request(endpoint, character_id)
-      request(endpoint, :post, :characterID => character_id)
+    def character_request(endpoint, character_id, options = {})
+      request(endpoint, :post, { :characterID => character_id }.merge(options))
     end
   end
 end
