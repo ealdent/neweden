@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "neweden"
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jason Adams"]
-  s.date = "2012-05-14"
+  s.date = "2012-10-12"
   s.description = "Ruby library for accessing Eve Online API"
   s.email = "jasonmadams@gmail.com"
   s.extra_rdoc_files = [
@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
-    "init.rb",
     "lib/hash_extensions.rb",
     "lib/neweden.rb",
     "lib/neweden/account.rb",
@@ -47,7 +46,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/ealdent/neweden"
   s.licenses = ["MIT"]
-  s.require_paths = ["init.rb", "lib"]
+  s.require_paths = ["lib"]
   s.rubygems_version = "1.8.23"
   s.summary = "Ruby library for accessing Eve Online API"
 
