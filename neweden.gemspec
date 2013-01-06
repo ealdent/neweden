@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "neweden"
-  s.version = "0.1.4"
+  s.version = "0.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jason Adams"]
-  s.date = "2012-10-12"
+  s.date = "2013-01-06"
   s.description = "Ruby library for accessing Eve Online API"
   s.email = "jasonmadams@gmail.com"
   s.extra_rdoc_files = [
