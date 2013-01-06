@@ -91,14 +91,12 @@ module NewEden
       if @key_id.nil? || @vcode.nil?
         {
           :headers => { :Accept => "application/xml" },
-          :timeout => REQUEST_TIMEOUT,
-          :cache_timeout => CACHE_TIMEOUT
+          :timeout => REQUEST_TIMEOUT
         }
       else
         {
           :headers => { :Accept => "application/xml" },
           :timeout => REQUEST_TIMEOUT,
-          :cache_timeout => CACHE_TIMEOUT,
           :params => params.merge({ :keyID => @key_id, :vCode => @vcode })
         }
       end
